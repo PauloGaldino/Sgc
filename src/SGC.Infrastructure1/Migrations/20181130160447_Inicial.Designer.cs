@@ -9,7 +9,7 @@ using SGC.Infrastructure.Data;
 namespace SGC.Infrastructure.Migrations
 {
     [DbContext(typeof(ClienteContext))]
-    [Migration("20181129215140_Inicial")]
+    [Migration("20181130160447_Inicial")]
     partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,7 +32,36 @@ namespace SGC.Infrastructure.Migrations
 
                     b.HasKey("ClienteId");
 
-                    b.ToTable("Clientes");
+                    b.ToTable("Cliente");
+                });
+
+            modelBuilder.Entity("SGC.ApplicationCore.Entity.Contato", b =>
+                {
+                    b.Property<int>("ContatoId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ClienteId");
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("Nome");
+
+                    b.Property<string>("Telefone");
+
+                    b.HasKey("ContatoId");
+
+                    b.HasIndex("ClienteId");
+
+                    b.ToTable("Contato");
+                });
+
+            modelBuilder.Entity("SGC.ApplicationCore.Entity.Contato", b =>
+                {
+                    b.HasOne("SGC.ApplicationCore.Entity.Cliente", "Cliente")
+                        .WithMany("Contatos")
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
