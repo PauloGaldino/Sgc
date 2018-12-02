@@ -14,5 +14,10 @@ namespace SGC.ApplicationCore.Entity
 
         //Relacinamento um clinte pode ter muitos contatos
         public ICollection<Contato> Contatos { get; set; }
+
+        public ICollection<ProfissaoCliente> ProfissoesClientes { get; set; }
+
+        public Endereco Endereco { get; set; }
+
     }
 }

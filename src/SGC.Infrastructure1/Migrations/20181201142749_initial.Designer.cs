@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SGC.Infrastructure.Data;
 
 namespace SGC.Infrastructure.Migrations
 {
     [DbContext(typeof(ClienteContext))]
-    partial class ClienteContextModelSnapshot : ModelSnapshot
+    [Migration("20181201142749_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,31 +70,19 @@ namespace SGC.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Bairro")
-                        .IsRequired()
-                        .HasColumnType("varchar (200)");
+                    b.Property<string>("Bairro");
 
-                    b.Property<string>("CEP")
-                        .IsRequired()
-                        .HasColumnType("varchar (15)");
+                    b.Property<string>("CEP");
 
-                    b.Property<string>("Cidade")
-                        .IsRequired()
-                        .HasColumnType("varchar (200)");
+                    b.Property<string>("Cidade");
 
                     b.Property<int>("ClienteId");
 
-                    b.Property<string>("Complemento")
-                        .IsRequired()
-                        .HasColumnType("varchar (100)");
+                    b.Property<string>("Complemento");
 
-                    b.Property<string>("Estado")
-                        .IsRequired()
-                        .HasColumnType("char (2)");
+                    b.Property<string>("Estado");
 
-                    b.Property<string>("Logradouro")
-                        .IsRequired()
-                        .HasColumnType("varchar (200)");
+                    b.Property<string>("Logradouro");
 
                     b.HasKey("EnderecoId");
 
@@ -108,17 +98,11 @@ namespace SGC.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CBO")
-                        .IsRequired()
-                        .HasColumnType("varchar (200)");
+                    b.Property<string>("CBO");
 
-                    b.Property<string>("Descricao")
-                        .IsRequired()
-                        .HasColumnType("varchar (1000)");
+                    b.Property<string>("Descricao");
 
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("varchar (200)");
+                    b.Property<string>("Nome");
 
                     b.HasKey("ProfissaoId");
 

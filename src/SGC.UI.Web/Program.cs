@@ -8,33 +8,34 @@ using System;
 
 namespace SGC.UI.Web
 {
-    public class Program
-    {
-        public static void Main(string[] args)
+  
+        public class Program
         {
-            var host = BuildeWebHost(args);
-            using (var scope = host.Services.CreateScope())
+            public static void Main(string[] args)
             {
-                var services = scope.ServiceProvider;
-                try
+                var host = BuildWebHost(args);
+
+                using (var scope = host.Services.CreateScope())
                 {
-                    var context = services.GetRequiredService<ClienteContext>();
-                    DbInitilizer.Initilize(context);
+                    var services = scope.ServiceProvider;
+                    try
+                    {
+                        var context = services.GetRequiredService<ClienteContext>();
+                        DbInitilizer.Initilize(context);
+                    }
+                    catch (Exception ex)
+                    {
+                        var logger = services.GetRequiredService<ILogger<Program>>();
+                        logger.LogError(ex, "Um erro ocorreu no método seeding do contexto.");
+                    }
                 }
-                catch (Exception ex)
-                {
-                    var logger = services.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(ex, "Um erro ocorreu no método seeding do contexto!");
-                }
+
+                host.Run();
             }
 
-            host.Run();
+            public static IWebHost BuildWebHost(string[] args) =>
+                WebHost.CreateDefaultBuilder(args)
+                    .UseStartup<Startup>()
+                    .Build();
         }
-
-        public static IWebHost BuildeWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .Build();
-
-    }
 }
