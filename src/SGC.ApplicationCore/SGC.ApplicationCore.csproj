@@ -5,7 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
+    <Compile Remove="Interfaces\Repository\IRepositoryBase.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Interfaces\Service\" />
     <Folder Include="Services\" />
   </ItemGroup>
 

@@ -28,7 +28,6 @@ namespace SGC.Infrastructure.Data
             modelBuilder.ApplyConfiguration(new EnderecoMap());
             modelBuilder.ApplyConfiguration(new ProfissaoClienteMap());
             modelBuilder.ApplyConfiguration(new MenuMap());
-       
         }
     }
 }
